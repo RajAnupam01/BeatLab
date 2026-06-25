@@ -6,9 +6,9 @@ import {createSongSchema} from "../validate/song.validate.js"
 import {upload} from "../middlewares/multer.js"
 const router = Router()
 
-router.post("/",verifyJWT,upload.single("audio"),validate(createSongSchema),addSong)
-router.post("/:id/thumbnail",verifyJWT,upload.single("thumbnail"),addThumbnail)
-router.get("/",verifyJWT,getAllSongs)
+router.post("/new",verifyJWT,upload.single("audio"),validate(createSongSchema),addSong)
+router.put("/:id",verifyJWT,upload.single("thumbnail"),addThumbnail)
+router.get("/all",getAllSongs)
 router.get("/single/:id",verifyJWT,getSingleSong);
 router.get("/album/:id",verifyJWT,getAllSongsByAlbum);
 router.delete('/:id',verifyJWT,deleteSong)

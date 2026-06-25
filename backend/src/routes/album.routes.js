@@ -9,6 +9,6 @@ const router = Router()
 router.post("/new",verifyJWT,upload.single("thumbnail"),validate(createAlbumSchema),
   createAlbum
 )
-router.get("/all",verifyJWT,getAllAlbums)
+router.get("/all",getAllAlbums)
 
 export default router;

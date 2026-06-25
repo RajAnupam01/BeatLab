@@ -82,7 +82,7 @@ export const loginUser = asyncHandler(async (req, res) => {
     const isPasswordCorrect = await user.isPasswordCorrect(password);
 
     if (!isPasswordCorrect) {
-        throw new ApiError(401, "Incorrect Credentials.");
+        throw new ApiError(403, "Incorrect Credentials.");
     }
 
     return sendTokens(user._id, res, "User logged in successfully", 200);
@@ -90,7 +90,7 @@ export const loginUser = asyncHandler(async (req, res) => {
 
 export const logoutUser = asyncHandler(async (req, res) => {
     if (!req.user || !req.user._id) {
-        throw new ApiError(401, "Unauthorized request");
+        throw new ApiError(400, "Unauthorized request");
     }
     await User.findByIdAndUpdate(req.user._id, {
         $unset: { refreshToken: "" },

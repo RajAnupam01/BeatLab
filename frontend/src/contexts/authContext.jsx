@@ -17,7 +17,7 @@ export const AuthProvider = ({children}) =>{
         try {
             const {data} = await api.post("/api/auth/register",{name,email,password})
             toast.success(data.message);
-            setUser(data.user)
+            setUser(data.data)
             setIsAuth(true)
             setBtnLoading(false)
             naviagate("/")
@@ -33,7 +33,8 @@ export const AuthProvider = ({children}) =>{
         setBtnLoading(true)
         try {
             const {data} = await api.post("/api/auth/login",{email,password})
-            setUser(data.user)
+            toast.success(data.message);
+            setUser(data.data)
             setIsAuth(true)
             setBtnLoading(false)
             navigate("/")
@@ -46,7 +47,7 @@ export const AuthProvider = ({children}) =>{
     async function fetchUser(){
         try {
             const {data} = await api.get("/api/user/me")
-            setUser(data.user)
+            setUser(data.data)
             setIsAuth(true)
             setLoading(false)
         } catch (error) {

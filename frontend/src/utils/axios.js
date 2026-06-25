@@ -47,7 +47,7 @@ instance.interceptors.response.use(
           { withCredentials: true }
         );
         console.log(response)
-        const newAccessToken = response.data.accessToken;
+        const newAccessToken = response.data.data.accessToken;
         
         instance.defaults.headers.common['Authorization'] = `Bearer ${newAccessToken}`;
         onAccessTokenFetched(newAccessToken);

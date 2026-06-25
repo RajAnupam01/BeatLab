@@ -27,11 +27,13 @@ app.use(cookieParser())
 import authRoutes  from "./src/routes/auth.routes.js"
 import userRoutes from "./src/routes/user.routes.js"
 import songRoutes from "./src/routes/song.routes.js"
+import albumRoutes from "./src/routes/album.routes.js"
 
 
 app.use("/api/auth",authRoutes)
 app.use("/api/user",userRoutes)
 app.use("/api/song",songRoutes)
+app.use("/api/album",albumRoutes)
 
 app.use(errorHandler);
 
