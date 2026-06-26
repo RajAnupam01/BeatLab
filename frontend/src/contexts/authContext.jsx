@@ -44,6 +44,26 @@ export const AuthProvider = ({children}) =>{
         }
     }
 
+    async function logout(){
+        try {
+            const data = await api.post("/api/auth/logout")
+            window.location.reload()
+        } catch (error) {
+             toast.error(error.response.data.message)
+        }
+    }
+
+    async function addToPlayList(id){
+        try{
+            const {data} = await api.post("/api/user/song/"+id)
+            toast.success(data.message);
+            fetchUser();
+        }catch(error){
+            toast.error(error.response.data.message)
+        }
+    }
+
+
     async function fetchUser(){
         try {
             const {data} = await api.get("/api/user/me")
@@ -57,12 +77,11 @@ export const AuthProvider = ({children}) =>{
     }
 
 
-
     useEffect(()=>{
         fetchUser()
     },[])
 
-return <AuthContext.Provider value={{registerUser,loginUser,user,isAuth,btnLoading,loading}} >{children}<Toaster/></AuthContext.Provider>// put data in the box
+return <AuthContext.Provider value={{registerUser,loginUser,user,isAuth,btnLoading,loading,logout,addToPlayList}} >{children}<Toaster/></AuthContext.Provider>// put data in the box
 }
 
 export const AuthData = () => useContext(AuthContext)  // read data from the box

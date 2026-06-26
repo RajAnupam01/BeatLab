@@ -70,7 +70,7 @@ function Admin() {
   <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10">
     <div>
       <h1 className="text-5xl font-black bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent">
-        Music Admin
+         Admin Section
       </h1>
       <p className="text-gray-400 mt-2">
         Manage albums, songs and artwork
