@@ -13,6 +13,7 @@ export const SongProvider = ({ children }) => {
     const [BtnLoading, setBtnLoading] = useState(false)
     const [songsLoading, setSongsLoading] = useState(true);
     const [albumsLoading, setAlbumsLoading] = useState(true);
+    const [songByAlbumLoading, setSongByAlbumLoading] = useState(true)
     const [currentSongLoading, setCurrentSongLoading] = useState(false);
     const [selectSong, setSelectedSong] = useState(null)
     const [isPlaying, setIsPlaying] = useState(false)
@@ -145,7 +146,22 @@ export const SongProvider = ({ children }) => {
         }
     }
 
-    return <SongContext.Provider value={{ songs, addAlbum, BtnLoading, songsLoading, appLoading,albumsLoading, albums, addSong, addSongThumbnail, deleteSong, fetchSingleSong, song, setSelectedSong, currentSongLoading, isPlaying, setIsPlaying, selectSong, nextMusic, prevMusic }} >{children}</SongContext.Provider>
+    const [albumSong, setAlbumSong] = useState([])
+    const [albumData, setAlbumData] = useState([])
+    async function fetchSongsByAlbum(id) {
+        setSongByAlbumLoading(true)
+        try {
+            const { data } = await api.get("/api/song/album/" + id);
+            setAlbumData(data.data.album);
+            setAlbumSong(data.data.songs);
+            setSongByAlbumLoading(false)
+        } catch (error) {
+            toast.error(error.response.data.message)
+            setSongByAlbumLoading(false)
+        }
+    }
+
+    return <SongContext.Provider value={{ songs, addAlbum, BtnLoading, songsLoading, appLoading, albumsLoading, albums, addSong, addSongThumbnail, deleteSong, fetchSingleSong, song, setSelectedSong, currentSongLoading, isPlaying, setIsPlaying, selectSong, nextMusic, prevMusic, fetchSongsByAlbum, albumSong, albumData,songByAlbumLoading }} >{children}</SongContext.Provider>
 }
 
 export const SongData = () => useContext(SongContext)
