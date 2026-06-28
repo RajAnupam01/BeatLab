@@ -83,7 +83,7 @@ const Player = () => {
   return (
     <div>
       {song && (
-        <div className="h-[10%] bg-black flex justify-between items-center text-white px-4">
+        <div className="h-[10%] py-4 bg-black flex justify-between items-center text-white px-4">
           {/* Left */}
           <div className="lg:flex items-center gap-4">
             <img

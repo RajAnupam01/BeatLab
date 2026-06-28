@@ -7,7 +7,7 @@ const Navbar = () => {
 
   const navigate = useNavigate()
 
-  const {logout} = AuthData()
+  const {logout, comingSoon} = AuthData()
 
   const logoutHandler = (e) =>{
     logout()
@@ -23,10 +23,10 @@ const Navbar = () => {
       </div>
 
       <div className="flex items-center gap-4">
-        <p className="bg-white text-black text-[15px] px-4 py-1 rounded-2xl hidden md:block cursor-pointer ">
+        <p className="bg-white text-black text-[15px] px-4 py-1 rounded-2xl hidden md:block cursor-pointer " onClick={()=>comingSoon()} >
           Explore Premium
         </p>
-         <p className="bg-white text-black text-[15px] px-4 py-1 rounded-2xl hidden md:block cursor-pointer ">
+         <p className="bg-white text-black text-[15px] px-4 py-1 rounded-2xl hidden md:block cursor-pointer " onClick={()=>comingSoon()} >
           Install App
         </p>
         <p className="bg-white text-black text-[15px] px-4 py-1 rounded-2xl  cursor-pointer " onClick={logoutHandler} >

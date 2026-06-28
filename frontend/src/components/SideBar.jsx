@@ -7,7 +7,7 @@ import MyPlayList from './MyPlayList';
 
 const SideBar = () => {
 
-    const { user } = AuthData()
+    const { user,comingSoon } = AuthData()
     const navigate = useNavigate()
 
 
@@ -18,7 +18,7 @@ const SideBar = () => {
                     <img src={assets.home_icon} className="w-6" />
                     <p className="font-bold" >Home</p>
                 </div>
-                <div className="flex items-center gap-3 pl-8 cursor-pointer" onClick={() => navigate("/")} >
+                <div className="flex items-center gap-3 pl-8 cursor-pointer" onClick={() =>comingSoon()} >
                     <img src={assets.search_icon} className="w-6" />
                     <p className="font-bold" >Search</p>
                 </div>
@@ -42,7 +42,7 @@ const SideBar = () => {
                 <div className="p-4 m-2 bg-[#121212] rounded font-semibold flex flex-col items-start justify-start gap-1 pl-4 mt-4 " >
                     <h1>Let's findSome podcast to follow</h1>
                     <p>We'll keep you update on new episodes</p>
-                    <button className="px-4 py-2 bg-white text-black text-[15px] rounded-full mt-4">Browse Podcasts</button>
+                    <button className="px-4 py-2 bg-white text-black text-[15px] rounded-full mt-4" onClick={()=>comingSoon()} >Browse Podcasts</button>
                 </div>
                 {user && user.role === "admin" && (
                     <button className="px-4 py-2 bg-white text-black text-[15px] rounded-full mt-4" onClick={() => navigate("/admin")} >Admin DashBoard</button>)

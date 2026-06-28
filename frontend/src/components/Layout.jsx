@@ -2,6 +2,7 @@ import React from 'react'
 import SideBar from './SideBar';
 import Navbar from './Navbar';
 import Player from './Player';
+import Footer from './Footer';
 
 const Layout = ({children}) => {
   return (
@@ -14,6 +15,7 @@ const Layout = ({children}) => {
             </div>
         </div>
         <Player/>
+        <Footer/>
     </div>
   )
 }

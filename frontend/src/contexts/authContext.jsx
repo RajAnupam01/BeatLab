@@ -75,12 +75,16 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+    const comingSoon = (feature = "This feature is coming soon 🚧") => {
+        toast(feature);
+    };
+
 
     useEffect(() => {
         fetchUser()
     }, [])
 
-    return <AuthContext.Provider value={{ registerUser, loginUser, user, isAuth, btnLoading, loading, logout, addToPlayList }} >{children}<Toaster /></AuthContext.Provider>// put data in the box
+    return <AuthContext.Provider value={{ registerUser, loginUser, user, isAuth, btnLoading, loading, logout, addToPlayList,comingSoon }} >{children}<Toaster /></AuthContext.Provider>// put data in the box
 }
 
 export const AuthData = () => useContext(AuthContext)  // read data from the box
