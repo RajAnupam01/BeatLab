@@ -18,7 +18,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={isAuth ? <Home /> : <Login />} />
             <Route path ="/admin" element={isAuth ? <Admin/>: <Login/>}/>
-            <Route path="/playlist" element={isAuth ? <PlayList user={user} />:<Login/>}/>
+            <Route path="/playlist" element={isAuth ? <PlayList user={user}  />:<Login/>}/>
             <Route path="/album/:id" element={isAuth ? <Album/>:<Login/>}/>
             <Route path="/register" element={isAuth ? <Home /> : <Register />} />
             <Route path="/login" element={isAuth ? <Home /> : <Login />} />

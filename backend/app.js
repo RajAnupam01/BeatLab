@@ -15,7 +15,7 @@ app.use(cors({
     credentials:true
 }))
 
-app.get("/",(req,res)=>{
+app.get("/",(_,res)=>{
     res.send("Backend is running successfully 🚀")
 })
 
