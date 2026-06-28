@@ -6,7 +6,7 @@ import { FaBookmark, FaPlay } from 'react-icons/fa';
 import { AuthData } from '../contexts/authContext';
 import Loading from '../components/Loading';
 
-const PlayList = ({user}) => {
+const PlayList = ({ user }) => {
 
 
   const { songs, setIsPlaying, setSelectedSong, songsLoading } = SongData();
@@ -31,7 +31,7 @@ const PlayList = ({user}) => {
     setIsPlaying(true)
   }
 
-  const { addToPlayList,} = AuthData();
+  const { addToPlayList, } = AuthData();
 
   const savePlaylist = (id) => {
     addToPlayList(id)
@@ -63,28 +63,39 @@ const PlayList = ({user}) => {
         </p>
       </div>
     </div>
-    <div className="grid grid-cols-3 sm:grid-cols-4 mt-10 mb-4 pl-2 text-[#a7a7a7] ">
+    <div className="grid grid-cols-2 sm:grid-cols-4 mt-10 mb-4 pl-2 text-[#a7a7a7]">
       <p>
-        <b className="mr-4">#</b>
+        <b className="mr-4">#</b> Title
       </p>
-      <p>Artist</p>
-      <p className="hidden sm:block ">Description</p>
-      <p className="text-center">Actions</p>
+      <p className="hidden sm:block" >Artist</p>
+      <p className="hidden sm:block">Description</p>
+      <p className="text-center ">Actions</p>
     </div>
     <hr />
     {userPlaylist && userPlaylist.map((e, i) => (
-      <div key={i} className="grid grid-cols-3 sm:grid-cols-4 mt-10 mb-4 pl-2 text-[#a7a7a7] hover:bg-[#ffffff2b] cursor-pointer">
-        <p className="text-white">
-          <b className="mr-4 text-[#a7a7a7] ">{i + 1}</b>
-          <img src={e.thumbnail} alt="" className="inline w-10 mr-5" />
-          {e.title}
+      <div key={i} className="grid grid-cols-2 sm:grid-cols-4 items-center py-2 pl-2 text-[#a7a7a7] hover:bg-[#ffffff2b] cursor-pointer rounded">
+        
+        <p className="text-white flex items-center">
+          <b className="mr-4 text-[#a7a7a7] min-w-[20px]">{i + 1}</b>
+          <img src={e.thumbnail} alt="" className="w-10 h-10 object-cover mr-5 inline" />
+          <span className="truncate">{e.title}</span>
         </p>
-        <p className="text-[15px]  ">{e.singer}</p>
-        <p className="text-[15px] ">{e.description.slice(0, 20)}...</p>
-        <p className="flex justify-center items-center gap-5">
-          <p className="text-[15px] text-center" onClick={() => savePlaylist(e._id)} ><FaBookmark /></p>
-          <p className="text-[15px] text-center" onClick={() => onClickHandler(e._id)} ><FaPlay /></p>
-        </p>
+
+        
+        <p className="text-[15px]  hidden sm:block truncate">{e.singer}</p>
+
+        
+        <p className="text-[15px] hidden sm:block truncate">{e.description.slice(0, 20)}...</p>
+
+        
+        <div className="flex justify-center items-center gap-5">
+          <button className="text-[15px] hover:text-white" onClick={() => savePlaylist(e._id)}>
+            <FaBookmark />
+          </button>
+          <button className="text-[15px] hover:text-white" onClick={() => onClickHandler(e._id)}>
+            <FaPlay />
+          </button>
+        </div>
       </div>
     ))}
   </Layout>
